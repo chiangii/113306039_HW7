@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>113306039_HW7</title>
+	<link rel="stylesheet" type="text/css" href="113306039_HW7.css">
+</head>
+<body>
+ <div class="container">
+        
+        <div class="main-container">
+            <div class="left-panel">
+                <div class="photo-panel">
+                    <img src="Lin Sung Jin.webp" alt="Lin Sung Jin">
+                </div>
+                
+                <div class="text-content">
+                    <h2 style = "font-family: Times New Roman", sans-serif; class="name">CHIANG</h2>
+                    <button id = "editNameButton">Edit</button>
+                    
+                    <div class="about-section">
+                        <h3 style = "font-family: Times New Roman", sans-serif;>ABOUT ME</h3>
+                        <p style="color:#333">I am a freshman in the Department of Information Management at National Chengchi University. I'm passionate about web development and always eager to learn new technologies.</p>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <h3 style = "font-family: Times New Roman", sans-serif;>CONTACT</h3>
+                        <p style="color:#333">113306039@g.nccu.edu.tw</p>
+                    </div>
+                    
+                    <div class="nccu-logo">
+                        <img src="nccu.jpg" alt="NCCU Logo">
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <section class="education-section">
+                    <h2 style = "font-family: Times New Roman", sans-serif;>Education</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="year">2024-2025</span>
+                            <div class="description">
+                                <h4>National Chengchi University, Department of MIS</h4>
+                                <p>Computer Science</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="year">2021-2024</span>
+                            <div class="description">
+                                <h4>Taichuang Girls' Senior High School</h4>
+                                <p>Participated in skateboard club</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="year">2020-2021</span>
+                            <div class="description">
+                                <h4>Middle School Generation</h4>
+                                <p>Started developing an interest in skateboard</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="homework-section">
+                    <h2 style = "font-family: Times New Roman", sans-serif;>Homework List</h2>
+                    <div class="homework-links">
+                        <a href="https://github.com/chiangii/HW1.git">HW1 - https://github.com/chiangii/HW1.git</a>
+                        <a href="https://github.com/chiangii/HW2_1018.git">HW2 - https://github.com/chiangii/HW2_1018.git</a>
+                        <a href="https://github.com/chiangii/HW3_1025.git">HW3 - https://github.com/chiangii/HW3_1025.git</a>
+                    </div>
+                </section>
+
+                <section class="music-section">
+                    <h2 style = "font-family: Times New Roman", sans-serif;>Favorite Music</h2>
+                    <div class="music-grid">
+                        <a href="https://open.spotify.com/track/4xlkIVboOY2plOALp9bqD8?si=eb33082e295d4a0e" class="music-item">
+                            <div class="music-icon">
+                                <img src="Night.jpg" alt="Night">
+                                    <p class="song-title">Night</p>
+                            </div>
+                        </a>
+                        <a href="https://open.spotify.com/track/4xlkIVboOY2plOALp9bqD8?si=eb33082e295d4a0e" class="music-item">
+                            <div class="music-icon">
+                                <img src="Little Bit More.jpg" alt="Little Bit More">
+                                	<p class="song-title">Little Bit More</p>
+                            </div>
+                        </a>
+                        <a href="https://open.spotify.com/track/05QUYSOApWLr8oBbpONl7p?si=1ea27a5570624e6b" class="music-item">
+                            <div class="music-icon">
+                                <img src="elijah woods.jpg" alt="elijah woods">
+                                	<p class="song-title">24/7,365</p>
+                            </div>
+                        </a>
+                        <a href="https://open.spotify.com/track/0WyEFirpTbVKTUij75NAUD?si=dceccf0e1f52433d" class="music-item">
+                            <div class="music-icon">
+                                <img src="Short Stay.jpg" alt="Short Stay">
+                                	<p class="song-title">Short Stay</p>
+                            </div>
+                        </a>
+                    </div>
+                    <button id = "addMusicButton">add</button>
+                    <p class="music-note">These music make me relax when I'm stressedful.</p>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script>
+        let isEditing = false;
+        const editButton = document.getElementById("editNameButton");
+        const nameElement = document.querySelector(".name");
+
+        editButton.addEventListener("click", () => {
+            if(isEditing){
+                const inputField = document.getElementById("nameInput");
+                const newName = inputField.value.trim();
+                if(newName){
+                    nameElement.textContent = newName;
+                }
+                inputField.remove();
+                editButton.textContent = "Edit";
+            }else{
+                const currentName = nameElement.textContent;
+                const inputField = document.createElement("input");
+                inputField.id = "nameInput";
+                inputField.type = "text";
+                inputField.value = currentName;
+                nameElement.textContent = "";
+                nameElement.appendChild(inputField);
+                editButton.textContent = "Save";
+            }
+            isEditing = !isEditing;
+        });
+        const addMusicButton = document.getElementById("addMusicButton");
+        addMusicButton.addEventListener("click", () =>{
+            const musicSection = document.querySelector(".music-section");
+            const form = document.createElement("form");
+            form.id = "musicForm";
+
+            const linkInput = document.createElement("input");
+            linkInput.type = "url";
+            linkInput.placeholder = "Enter music link";
+            linkInput.required = true;
+
+            const nameInput = document.createElement("input");
+            nameInput.type = "text";
+            nameInput.placeholder = "Enter music name";
+            nameInput.required = true;
+
+            const submitButton = document.createElement("button");
+            submitButton.type = "submit";
+            submitButton.textContent = "Add Music";
+
+            form.appendChild(linkInput);
+            form.appendChild(document.createElement("br")) ;
+            form.appendChild(nameInput); 
+            form.appendChild(document.createElement("br")) ;
+            form.appendChild(submitButton);
+
+            musicSection.appendChild(form); 
+
+            form.addEventListener("submit", (event) =>{
+                event.preventDefault();
+                const musicLink = linkInput.value.trim();
+                const musicName = nameInput.value.trim();
+                if(musicLink && musicName){
+                    const musicSection = document.querySelector(".music-grid");
+                    const musicItem = document.createElement("a");
+                    musicItem.href = musicLink;
+                    musicItem.target = "_blank";
+                    musicItem.className = "music-item";
+
+                    const musicIcon = document.createElement("div");
+                    musicIcon.className = "music-icon";
+
+                    const img = document.createElement("img");
+                    img.src = musicName + ".jpg"; 
+                    img.alt = musicName;
+
+                    const title = document.createElement("p");
+                    title.className = "song-title";
+                    title.textContent = musicName;
+
+                    musicIcon.appendChild(img);
+                    musicIcon.appendChild(title);
+                    musicItem.appendChild(musicIcon);
+                    musicSection.appendChild(musicItem);
+
+                    form.remove();
+                } else {
+                    alert("Please fill in both fields!");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
